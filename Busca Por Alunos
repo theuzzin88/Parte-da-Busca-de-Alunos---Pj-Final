@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_ALUNOS 10
+#define TAM_NOME 10
+
+struct Aluno {
+    char nome[TAM_NOME];
+
+};
+
+int buscarAlunoPorNome(struct Aluno chamada[], int numAlunos, const char nome[]) {
+    for (int i = 0; i < numAlunos; i++) {
+        if (strcmp(chamada[i].nome, nome) == 0) {
+
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int main() {
+    struct Aluno chamada[MAX_ALUNOS];
+    int numAlunos;
+
+    printf("Digite o numero de alunos: ");
+    scanf("%d", &numAlunos);
+
+    for (int i = 0; i < numAlunos; i++) {
+        printf("Digite o nome do aluno %d: ", i + 1);
+        scanf("%s", chamada[i].nome);
+    }
+
+    char nomeBusca[TAM_NOME];
+    printf("Digite o nome do aluno a ser buscado: ");
+    scanf("%s", nomeBusca);
+
+    int indice = buscarAlunoPorNome(chamada, numAlunos, nomeBusca);
+
+    if (indice != -1) {
+        printf("Aluno encontrado na posicao %d da chamada.\n", indice + 1);
+    } else {
+        printf("Aluno nao encontrado na chamada.\n");
+    }
+
+    return 0;
+}
